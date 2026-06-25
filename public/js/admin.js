@@ -66,9 +66,9 @@ async function loadProducts() {
       <tr>
         <td>${p.id}</td>
         <td>
-          <img src="${p.image ? 'images/' + p.image : 'images/placeholder.svg'}"
+          <img src="${p.image ? '/images/' + p.image : '/images/placeholder.svg'}"
                alt="" style="width:50px;height:50px;object-fit:cover;border-radius:6px;"
-               onerror="this.src='images/placeholder.svg'">
+               onerror="this.src='/images/placeholder.svg'">
         </td>
         <td>${esc(p.name)}</td>
         <td>${esc(p.price)}</td>
@@ -124,7 +124,7 @@ async function editProduct(id) {
 
     const preview = document.getElementById('imagePreview');
     if (p.image) {
-      preview.src = 'images/' + p.image;
+      preview.src = '/images/' + p.image;
       preview.style.display = 'block';
     } else {
       preview.style.display = 'none';

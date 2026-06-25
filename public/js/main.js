@@ -14,9 +14,9 @@ async function loadProducts() {
       <div class="product-card" onclick="goToDetail(${p.id})">
         <img
           class="card-img"
-          src="${p.image ? 'images/' + p.image : 'images/placeholder.svg'}"
+          src="${p.image ? '/images/' + p.image : '/images/placeholder.svg'}"
           alt="${p.name}"
-          onerror="this.src='images/placeholder.svg'"
+          onerror="this.src='/images/placeholder.svg'"
         >
         <div class="card-body">
           <h3>${escapeHtml(p.name)}</h3>

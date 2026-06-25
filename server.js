@@ -7,8 +7,15 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// 数据文件路径
-const DATA_FILE = path.join(__dirname, 'data', 'products.json');
+// 持久化目录（通过环境变量配置，Zeabur 上设为绝对路径）
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
+const IMAGES_DIR = process.env.IMAGES_DIR || path.join(__dirname, 'public', 'images');
+
+// 确保目录存在
+if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+if (!fs.existsSync(IMAGES_DIR)) fs.mkdirSync(IMAGES_DIR, { recursive: true });
+
+const DATA_FILE = path.join(DATA_DIR, 'products.json');
 
 // ============ 工具函数：JSON 文件读写 ============
 
@@ -25,11 +32,13 @@ function writeData(data) {
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+// 图片访问路由（指向 IMAGES_DIR，本地默认 public/images，Zeabur 上指向 /storage/images）
+app.use('/images', express.static(IMAGES_DIR));
 
 // ============ 图片上传配置 ============
 
 const storage = multer.diskStorage({
-  destination: path.join(__dirname, 'public', 'images'),
+  destination: IMAGES_DIR,
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
     cb(null, uuidv4() + ext);

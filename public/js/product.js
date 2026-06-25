@@ -28,9 +28,9 @@ async function loadProduct() {
     wrapper.innerHTML = `
       <img
         class="detail-image"
-        src="${p.image ? 'images/' + p.image : 'images/placeholder.svg'}"
+        src="${p.image ? '/images/' + p.image : '/images/placeholder.svg'}"
         alt="${escapeHtml(p.name)}"
-        onerror="this.src='images/placeholder.svg'"
+        onerror="this.src='/images/placeholder.svg'"
       >
       <div class="detail-info">
         ${p.category ? `<span class="detail-category">${escapeHtml(p.category)}</span>` : ''}
