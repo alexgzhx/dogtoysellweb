@@ -20,8 +20,15 @@ const DATA_FILE = path.join(DATA_DIR, 'products.json');
 // ============ 工具函数：JSON 文件读写 ============
 
 function readData() {
-  const raw = fs.readFileSync(DATA_FILE, 'utf-8');
-  return JSON.parse(raw);
+  try {
+    const raw = fs.readFileSync(DATA_FILE, 'utf-8');
+    return JSON.parse(raw);
+  } catch {
+    // 文件不存在时（如 Zeabur Volume 首次挂载），返回默认数据并初始化
+    const defaults = { products: [], contact: { email: '', phone: '', wechat: '', address: '' } };
+    writeData(defaults);
+    return defaults;
+  }
 }
 
 function writeData(data) {
