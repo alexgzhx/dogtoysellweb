@@ -1,0 +1,21 @@
+{
+  "name": "dogtoysellweb",
+  "version": "1.0.0",
+  "description": "狗狗玩具售卖展示网站",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "pet",
+    "toys",
+    "dog"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "multer": "^2.2.0",
+    "uuid": "^14.0.1"
+  }
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理后台 - PawsJoy</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">
+        <span class="icon">🐾</span> PawsJoy
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">返回前台</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 登录界面 -->
+  <section class="admin-page" id="loginSection">
+    <div class="container">
+      <div class="login-box">
+        <h2>🔐 管理员登录</h2>
+        <input type="password" id="passwordInput" placeholder="请输入管理密码" onkeydown="if(event.key==='Enter')login()">
+        <button class="btn btn-primary" onclick="login()" style="width:100%">登 录</button>
+        <p id="loginError" style="color:#f44336;margin-top:0.8rem;display:none;"></p>
+        <p style="color:#999;font-size:0.8rem;margin-top:1rem;">默认密码：admin123</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 管理界面（登录后显示） -->
+  <section class="admin-page" id="adminSection" style="display:none;">
+    <div class="container">
+      <div class="section-header">
+        <h1>📋 管理后台</h1>
+        <button class="btn btn-secondary btn-sm" onclick="logout()">退出登录</button>
+      </div>
+
+      <!-- 标签切换 -->
+      <div class="admin-tabs">
+        <button class="tab-btn active" onclick="switchTab('products')">📦 产品管理</button>
+        <button class="tab-btn" onclick="switchTab('contact')">📞 联系方式</button>
+      </div>
+
+      <!-- 产品管理标签 -->
+      <div class="tab-content active" id="tab-products">
+        <div class="section-header">
+          <h3>产品列表</h3>
+          <button class="btn btn-primary" onclick="showAddForm()">+ 新增产品</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="productTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>图片</th>
+                <th>名称</th>
+                <th>价格</th>
+                <th>分类</th>
+                <th>推荐</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="productTableBody">
+              <!-- JS 动态渲染 -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 产品编辑表单 -->
+        <div class="form-card" id="productForm" style="display:none;">
+          <h3 id="formTitle">新增产品</h3>
+          <form id="productFormInner" onsubmit="saveProduct(event)">
+            <input type="hidden" id="prodId">
+            <div class="form-row">
+              <div class="form-group">
+                <label>产品名称 *</label>
+                <input type="text" id="prodName" required placeholder="例如：耐咬橡胶狗狗磨牙球">
+              </div>
+              <div class="form-group">
+                <label>价格</label>
+                <input type="text" id="prodPrice" placeholder="例如：$9.99">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>简短简介（首页展示）</label>
+              <input type="text" id="prodSummary" placeholder="一句话描述产品亮点">
+            </div>
+            <div class="form-group">
+              <label>详细描述（详情页展示）</label>
+              <textarea id="prodDesc" placeholder="详细的产品描述，支持多行文字"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Amazon 购买链接</label>
+                <input type="url" id="prodAmazonLink" placeholder="https://www.amazon.com/dp/...">
+              </div>
+              <div class="form-group">
+                <label>分类</label>
+                <input type="text" id="prodCategory" placeholder="例如：chew-toys">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>产品图片</label>
+                <input type="file" id="prodImage" accept="image/*">
+                <input type="hidden" id="prodImageName">
+                <img class="image-preview" id="imagePreview" src="" alt="预览" style="display:none;">
+              </div>
+              <div class="form-group">
+                <label>首页推荐</label>
+                <select id="prodFeatured">
+                  <option value="false">否</option>
+                  <option value="true">是</option>
+                </select>
+              </div>
+            </div>
+            <div style="display:flex;gap:0.8rem;">
+              <button type="submit" class="btn btn-primary">💾 保存</button>
+              <button type="button" class="btn btn-secondary" onclick="hideProductForm()">取消</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- 联系方式标签 -->
+      <div class="tab-content" id="tab-contact">
+        <div class="form-card">
+          <h3>编辑联系方式</h3>
+          <p style="color:#888;margin-bottom:1rem;">此处填写的信息将显示在网站首页底部。</p>
+          <form id="contactForm" onsubmit="saveContact(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>📧 邮箱</label>
+                <input type="email" id="contactEmail" placeholder="contact@example.com">
+              </div>
+              <div class="form-group">
+                <label>📞 电话</label>
+                <input type="text" id="contactPhone" placeholder="+1 (555) 123-4567">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>💬 微信</label>
+                <input type="text" id="contactWechat" placeholder="微信号">
+              </div>
+              <div class="form-group">
+                <label>📍 地址</label>
+                <input type="text" id="contactAddress" placeholder="公司地址">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">💾 保存联系方式</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

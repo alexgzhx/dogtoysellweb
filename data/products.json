@@ -1,0 +1,43 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "耐咬橡胶狗狗磨牙球",
+      "summary": "超强耐咬，大型犬也能尽情撕咬，安全无毒橡胶材质",
+      "description": "采用食品级天然橡胶制成，安全无毒，主人放心。独特的不规则弹跳设计，增加狗狗追逐乐趣。表面凸点设计可清洁牙齿，按摩牙龈。适合中大型犬使用，直径7cm，内置发声哨子。",
+      "price": "$9.99",
+      "image": "chew-ball.jpg",
+      "amazonLink": "https://www.amazon.com/dp/B0EXAMPLE1",
+      "category": "chew-toys",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "name": "互动益智嗅闻垫",
+      "summary": "激发狗狗嗅觉本能，藏食训练神器，慢食减肥好帮手",
+      "description": "多层毛绒布设计，可将零食藏在各处褶皱中。有效缓解狗狗焦虑和无聊，训练嗅觉灵敏度。底部防滑设计，可机洗清洁。尺寸40×40cm，适合小型犬和中型犬。附带使用引导手册。",
+      "price": "$14.99",
+      "image": "snuffle-mat.jpg",
+      "amazonLink": "https://www.amazon.com/dp/B0EXAMPLE2",
+      "category": "interactive",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "name": "耐咬绳结拉扯玩具套装",
+      "summary": "4件套，户外互动拉扯训练必备，棉花纤维牙齿清洁",
+      "description": "包含4种不同形状的绳结玩具：标准绳结、8字形绳结、球绳结和骨形绳结。纯棉材质，天然纤维可在玩耍过程中清洁狗狗牙齿。适合拔河拉扯互动游戏，增进主人与狗狗感情。",
+      "price": "$12.99",
+      "image": "rope-toys.jpg",
+      "amazonLink": "https://www.amazon.com/dp/B0EXAMPLE3",
+      "category": "tug-toys",
+      "featured": false
+    }
+  ],
+  "contact": {
+    "email": "contact@example.com",
+    "phone": "+1 (555) 123-4567",
+    "wechat": "",
+    "address": ""
+  }
+}

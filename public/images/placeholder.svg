@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#e3f2fd"/>
+  <g transform="translate(200,150)">
+    <text x="0" y="-30" text-anchor="middle" font-size="48" fill="#64b5f6">🐾</text>
+    <text x="0" y="20" text-anchor="middle" font-size="16" fill="#90caf9" font-family="sans-serif">暂无图片</text>
+  </g>
+</svg>
